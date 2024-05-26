@@ -5,7 +5,9 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { useColorScheme } from '@/components/useColorScheme';
 
 export {
@@ -47,12 +49,33 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-
+  const router = useRouter();
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="(modals)/login" options={{ 
+          title: 'Log in or sign up', 
+          headerTitleStyle: {fontFamily: 'mon-sb'},
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name='close-outline' size={30}  />
+            </TouchableOpacity>
+
+          ), 
+          presentation: 'modal' }} />
+
+<Stack.Screen name="listing/[id]" options={{ headerTitle: '' }} />
+<Stack.Screen name="(modals)/booking" options={{ 
+  presentation: 'transparentModal',
+  animation: 'fade',
+  headerLeft: () => (
+    <TouchableOpacity onPress={() => router.back()}>
+      <Ionicons name='close-outline' size={30}  />
+    </TouchableOpacity>
+
+  ), 
+ }} />
       </Stack>
     </ThemeProvider>
   );
