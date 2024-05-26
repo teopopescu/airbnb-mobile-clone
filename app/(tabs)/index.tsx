@@ -1,15 +1,27 @@
 import {View, Text, StyleSheet} from'react-native';
 import React from 'react';
-import  {Link} from 'expo-router';
+import  {Link,Stack} from 'expo-router';
+import ExploreHeader from '@/components/ExploreHeader';
+import Listings from '@/components/Listings';
+import { useState } from 'react';
+
+
 
 const Page = () => {
+  const [category, setCategory] = useState('Tiny homes');
+  const onDataChanged = (category: string) => {
+    setCategory(category);
+    console.log('CHANGED_',category);
+  };
   return (
-    <View>
-         <Link href={"/(modals)/login"}>Login</Link>
-          <Link href={"/(modals)/booking"}>Bookings</Link>
-          <Link href={"/listing/1337"}>Listing details page</Link>
+    <View style={{flex: 1, marginTop: 200}}>
+      <Stack.Screen options={{
+        header: () => <ExploreHeader onCategoryChanged={onDataChanged} />
+      }} 
+      />
+      <Listings listings={[]} category={category} />
     </View>
-  )
+  );
+}; 
 
-}
 export default Page;
