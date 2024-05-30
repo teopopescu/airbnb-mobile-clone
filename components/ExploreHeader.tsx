@@ -119,7 +119,7 @@ const styles= StyleSheet.create({
     filterBtn: {
         padding: 10,
         borderWidth: 1,
-        borderColor: Colors.grey,
+        borderColor: '#A2A0A2',
         borderRadius: 24,
 
     },
@@ -171,8 +171,7 @@ const styles= StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 8,
-        color: Colors.grey
+        paddingBottom: 8
     },
     categoriesBtnActive: {
         flex: 1,

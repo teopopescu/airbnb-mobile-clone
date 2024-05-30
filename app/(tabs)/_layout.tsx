@@ -42,6 +42,13 @@ return (
         }} />
 
 <Tabs.Screen 
+      name="map" 
+      options={{ 
+        tabBarLabel: 'Map',
+        tabBarIcon: ({color,size}) =>  <MaterialCommunityIcons name="map-marker" color={Colors.primary} size={size} ></MaterialCommunityIcons>
+        }} />
+
+<Tabs.Screen 
       name="profile" 
       options={{ 
         tabBarLabel: 'Profile',
@@ -49,6 +56,11 @@ return (
         }} />
 
   </Tabs>
+
+  
+
+
+
   )
 }
 
