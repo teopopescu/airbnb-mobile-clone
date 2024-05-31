@@ -11,6 +11,8 @@ import { useRouter } from 'expo-router';
 import { useColorScheme } from '@/components/useColorScheme';
 import * as SecureStore from 'expo-secure-store';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
+import ModalHeaderText from '@/components/ModalHeaderText';
+import Colors from '@/constants/Colors';
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 // const CLERK_PUBLISHABLE_KEY ='pk_test_c3RlcmxpbmctcmluZ3RhaWwtMzEuY2xlcmsuYWNjb3VudHMuZGV2JA';
 const tokenCache = {
@@ -102,9 +104,11 @@ function RootLayoutNav() {
 <Stack.Screen name="listing/[id]" options={{ headerTitle: '', headerTransparent: true }} />
 <Stack.Screen name="(modals)/booking" options={{ 
   presentation: 'transparentModal',
+  headerTransparent: true,
+  headerTitle: () => <ModalHeaderText/>,
   animation: 'fade',
   headerLeft: () => (
-    <TouchableOpacity onPress={() => router.back()}>
+    <TouchableOpacity onPress={() => router.back()} style={{backgroundColor: '#fff', borderColor: Colors.grey, borderRadius: 20, borderWidth: 1, padding: 4}}>
       <Ionicons name='close-outline' size={30}  />
     </TouchableOpacity>
 
